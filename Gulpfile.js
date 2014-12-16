@@ -22,9 +22,9 @@ gulp.task('scss', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['less', 'scss'], function() {
     gulp.watch(['**/*.less'], ['less']);
     gulp.watch(['**/*.scss'], ['scss']);
 });
 
-gulp.task('default', ['watch','less', 'scss']);
+gulp.task('default', ['less', 'scss']);

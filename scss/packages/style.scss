@@ -9,4 +9,101 @@ body {
 
 #scss {
     @import 'grid';
+
+    #verbose{
+        .section {
+            margin: 0 auto;
+            @include container($padding: 6px);
+            div { min-height: 100px; }
+            .article {
+                @include column($span: 1, $of: 7, $gutter: 12px);
+                background-color: #ccc;
+            }
+            .two {
+                @include column($span: 2, $of: 7, $gutter: 12px);
+                background-color: #ccc;
+                @include container($padding: 6px);
+            }
+            .inner {
+                @include column($span: 1, $of: 7, $gutter: 12px);
+                background-color: #666666;
+            }
+            .push {
+                @include column($span: 1, $of: 7, $gutter: 12px, $push:1);
+                background-color: #666666;
+            }
+            .pad {
+                @include column($span: 3, $of: 7, $gutter: 12px);
+                background-color: #666666;
+            }
+            .pull {
+                @include column($span: 1, $of: 7, $gutter: 12px, $pull:1);
+                background-color: #666666;
+            }
+        }
+    }
+
+    $global-gutter: 12px;
+    $global-columns: 7;
+
+    #simple{
+        .section {
+            @include container();
+            div { min-height: 100px; }
+            .article {
+                @include column(1);
+                background-color: #ccc;
+            }
+            .two {
+                @include column(2);
+                background-color: #ccc;
+                @include container();
+            }
+            .inner {
+                @include column(1);
+                background-color: #666666;
+            }
+            .push {
+                @include column(1, $push:1);
+                background-color: #666666;
+            }
+            .pad {
+                @include column(3);
+                background-color: #666666;
+            }
+            .pull {
+                @include column(1, $pull:1);
+                background-color: #666666;
+            }
+        }
+    }
+
+    #mixed{
+        .section {
+            @include container();
+            > div { min-height: 100px; background-color: #ccc; }
+            .article {
+                @include column(1);
+            }
+            .two {
+                @include column(2);
+                @include container();
+            }
+            .inner {
+                @include column(1,4);
+                background-color: #666666;
+                min-height: 100px;
+            }
+            .push {
+                @include column(1,4,$push:1);
+                background-color: #666666;
+                min-height: 100px;
+            }
+            .pull {
+                @include column(1,4,$pull:1);
+                background-color: #666666;
+                min-height: 100px;
+            }
+        }
+    }
 }
