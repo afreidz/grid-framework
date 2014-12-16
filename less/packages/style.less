@@ -1,0 +1,109 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    > div {
+        margin-bottom: 30px;
+    }
+    text-align: center;
+}
+
+#less {
+    @import 'grid';
+
+    #verbose{
+        .section {
+            margin: 0 auto;
+            .container(@padding: 6px);
+            div { min-height: 100px; }
+            .article {
+                .column(@span: 1, @of: 7, @gutter: 12px);
+                background-color: #ccc;
+            }
+            .two {
+                .column(@span: 2, @of: 7, @gutter: 12px);
+                background-color: #ccc;
+                .container(@padding: 6px);
+            }
+            .inner {
+                .column(@span: 1, @of: 7, @gutter: 12px);
+                background-color: #666666;
+            }
+            .push {
+                .column(@span: 1, @of: 7, @gutter: 12px, @push:1);
+                background-color: #666666;
+            }
+            .pad {
+                .column(@span: 3, @of: 7, @gutter: 12px);
+                background-color: #666666;
+            }
+            .pull {
+                .column(@span: 1, @of: 7, @gutter: 12px, @pull:1);
+                background-color: #666666;
+            }
+        }
+    }
+
+    @global-gutter: 12px;
+    @global-columns: 7;
+
+    #simple{
+        .section {
+            .container();
+            div { min-height: 100px; }
+            .article {
+                .column(1);
+                background-color: #ccc;
+            }
+            .two {
+                .column(2);
+                background-color: #ccc;
+                .container();
+            }
+            .inner {
+                .column(1);
+                background-color: #666666;
+            }
+            .push {
+                .column(1, @push:1);
+                background-color: #666666;
+            }
+            .pad {
+                .column(3);
+                background-color: #666666;
+            }
+            .pull {
+                .column(1, @pull:1);
+                background-color: #666666;
+            }
+        }
+    }
+
+    #mixed{
+        .section {
+            .container();
+            > div { min-height: 100px; background-color: #ccc; }
+            .article {
+                .column(1);
+            }
+            .two {
+                .column(2);
+                .container();
+            }
+            .inner {
+                .column(1,4);
+                background-color: #666666;
+                min-height: 100px;
+            }
+            .push {
+                .column(1,4,@push:1);
+                background-color: #666666;
+                min-height: 100px;
+            }
+            .pull {
+                .column(1,4,@pull:1);
+                background-color: #666666;
+                min-height: 100px;
+            }
+        }
+    }
+}

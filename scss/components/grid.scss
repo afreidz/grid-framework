@@ -1,0 +1,65 @@
+$global-columns: 4;
+$global-gutter: 10px;
+$global-padding: $global-gutter/2;
+
+// Should be used for IE only
+$global-gutter-percent: 1%;
+$global-padding-percent: $global-gutter-percent/2;
+
+@mixin container($padding: $global-padding, $padding-percent: $global-padding-percent){
+    box-sizing: border-box;
+    padding-left: $padding;
+    padding-right: $padding;
+    @include clearfix();
+
+    .ie-grid & {
+        padding-left: $padding-percent/2;
+        padding-right: $padding-percent/2;
+    }
+}
+@mixin column($span:1, $of:$global-columns, $gutter: $global-gutter, $push:0, $pull:0, $gutter-percent: $global-gutter-percent){
+    $width: ((1/$of)*100);
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    width: calc(#{$span * $width + "%"} - #{$gutter});
+    margin-left: calc( (#{$push*$width + "%"} ) + (#{$gutter/2}) );
+    margin-right: calc( (#{$pull*$width + "%"} ) + (#{$gutter/2}) );
+
+    .ie-grid & {
+        width: $width - $gutter-percent;
+        margin-left: ($push*$width)+($gutter-percent/2);
+        margin-right: ($pull*$width)+($gutter-percent/2);
+        overflow: hidden;
+    }
+}
+@mixin push($span:1, $of:$global-columns, $gutter:$global-gutter){
+    $width: (($span/$of)*100);
+    margin-left: calc( (#{$span*$width + "%"} ) + (#{$gutter/2}) );
+
+    .ie-grid & {
+        margin-left: ($span*$width)+($gutter-percent/2);
+    }
+}
+@mixin pull($span:1, $of:$global-columns, $gutter:$global-gutter){
+    $width: (($span/$of)*100);
+    margin-right: calc( (#{$span*$width + "%"} ) + (#{$gutter/2}) );
+
+    .ie-grid & {
+        margin-right: ($span*$width)+($gutter-percent/2);
+    }
+}
+
+@mixin clearfix{
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+    .ie-grid & {
+        zoom: 1;
+    }
+}
