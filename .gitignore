@@ -1,4 +1,5 @@
 node_modules
-style-less.css
-style-scss.css
+**/*-less.css
+**/*-scss.css
 .sass-cache
+**/.DS_Store

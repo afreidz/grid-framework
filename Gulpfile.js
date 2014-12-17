@@ -5,21 +5,21 @@ var gulp = require('gulp'),
 
 
 gulp.task('less', function () {
-    gulp.src('less/packages/style.less')
+    gulp.src('./less-version/less/packages/*.less')
         .pipe(less({
-            paths: ['less/components']
+            paths: ['less-version/less/components']
         }))
-        .pipe(rename('style-less.css'))
-        .pipe(gulp.dest('./'));
+        .pipe(rename({ suffix: '-less', extname: '.css'}))
+        .pipe(gulp.dest('./less-version/'));
 });
 
 gulp.task('scss', function () {
-    gulp.src('scss/packages/style.scss')
+    gulp.src('./scss-version/scss/packages/*.scss')
     .pipe(scss({
-        loadPath: ['scss/components']
+        loadPath: ['scss-version/scss/components']
     }))
-    .pipe(rename('style-scss.css'))
-    .pipe(gulp.dest('./'));
+    .pipe(rename({ suffix: '-scss', extname: '.css'}))
+    .pipe(gulp.dest('./scss-version/'));
 });
 
 gulp.task('watch', ['less', 'scss'], function() {
